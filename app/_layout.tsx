@@ -8,7 +8,7 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <Tabs />
+      <Tabs screenOptions={{ headerShown: false }}/>
     </SafeAreaProvider>
     
   );
