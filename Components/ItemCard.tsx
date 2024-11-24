@@ -37,8 +37,8 @@ export default function ItemCard({
     
     if (cartQuantity > 0) {
       return (
-        <TouchableOpacity className="absolute bottom-2 right-2 bg-[#BDDAE0] px-3 py-1 rounded-full" onPress={() => setModalVisible(true)} >
-          <Text className="text-[#356B82] font-bold">{cartQuantity}</Text>
+        <TouchableOpacity className="absolute bottom-2 right-2 bg-[#356B82] px-3 py-1 rounded-full" onPress={() => setModalVisible(true)} >
+          <Text className="text-white font-bold">{cartQuantity}</Text>
         </TouchableOpacity>
       );
     }
@@ -57,7 +57,7 @@ export default function ItemCard({
     
     if (existingItemIndex >= 0) {
       const newCart = [...cart];
-      newCart[existingItemIndex].quantity += quantity;
+      newCart[existingItemIndex].quantity = quantity;
       setCart(newCart);
     } else {
       const newItem = { id: itemDetails.id, quantity };
@@ -65,7 +65,6 @@ export default function ItemCard({
     }
     
     setModalVisible(false);
-    setQuantity(1);
   };
 
   return (
@@ -141,7 +140,7 @@ export default function ItemCard({
               <View className="flex-row items-center border border-gray-300 rounded-lg overflow-hidden">
                 <TouchableOpacity 
                   className="p-2 bg-[#356B82]" 
-                  onPress={() => setQuantity(Math.max(1, quantity - 1))}
+                  onPress={() => setQuantity(Math.max(0, quantity - 1))}
                 >
                   <Text className="text-lg text-white font-bold px-2">-</Text>
                 </TouchableOpacity>
