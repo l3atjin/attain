@@ -29,9 +29,14 @@ export interface Item {
   nacs_subcategory: string;
 }
 
+export interface Order {
+  id: number;
+  quantity: number;
+}
+
 export default function Index() {
   const [items, setItems] = useState<Item[]>([]);
-  const [cart, setCart] = useState<Item[]>([]);
+  const [cart, setCart] = useState<Order[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredItems, setFilteredItems] = useState<Item[]>([]);
 
@@ -47,7 +52,8 @@ export default function Index() {
     setFilteredItems(filtered);
   };
 
-  // should validate if item has all required fields
+
+  // should validate if item has all required fields. e.g. if items is oos then dont include it ?
   const validateItems = (rawItems: Item[]) => {
     return rawItems.filter((item) => {
       if (!item.name) return false
