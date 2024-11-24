@@ -83,18 +83,22 @@ export default function ItemCard({
       </View>
       <Text className="text-gray-600 underline">{itemDetails.supplier}</Text>
       <Text className="font-bold text-gray-800">{itemDetails.name}</Text>
-      <Text className="text-gray-600">{itemDetails.price}</Text>
-
-      {/* Modal */}
+      {itemDetails.discounted_price === '' ? (
+        <Text className='text-gray-800 font-medium'>${itemDetails.price}</Text>
+      ) : (
+        <View className='flex-row items-center gap-2'>
+          <Text className='text-green-500 font-bold'>${itemDetails.discounted_price}</Text>
+          <Text className='text-black line-through'>${itemDetails.price}</Text>
+        </View>
+      )}
+      {/* modal */}
       <Modal
         visible={modalVisible}
         animationType="slide"
         transparent={true}
         onRequestClose={() => setModalVisible(false)}
       >
-        {/* Modal Background */}
         <View className="flex flex-1 justify-end bg-black/50 mb-10">
-          {/* Modal Content */}
           <View className="bg-white rounded-t-2xl p-4 relative">
             <TouchableOpacity
               onPress={() => setModalVisible(false)}
